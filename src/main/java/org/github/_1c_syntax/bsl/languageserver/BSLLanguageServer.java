@@ -21,6 +21,8 @@
  */
 package org.github._1c_syntax.bsl.languageserver;
 
+import com.google.common.collect.Lists;
+import org.eclipse.lsp4j.CompletionOptions;
 import org.eclipse.lsp4j.InitializeParams;
 import org.eclipse.lsp4j.InitializeResult;
 import org.eclipse.lsp4j.ServerCapabilities;
@@ -60,7 +62,7 @@ public class BSLLanguageServer implements LanguageServer, LanguageClientAware {
   public CompletableFuture<InitializeResult> initialize(InitializeParams params) {
     ServerCapabilities capabilities = new ServerCapabilities();
     capabilities.setTextDocumentSync(TextDocumentSyncKind.Full);
-    //capabilities.setCompletionProvider(new CompletionOptions(false, Lists.newArrayList(".")));
+    capabilities.setCompletionProvider(new CompletionOptions(false, Lists.newArrayList(".")));
     //capabilities.setHoverProvider(Boolean.TRUE);
     capabilities.setDocumentRangeFormattingProvider(Boolean.TRUE);
     capabilities.setDocumentFormattingProvider(Boolean.TRUE);

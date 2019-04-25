@@ -55,12 +55,12 @@ import org.eclipse.lsp4j.services.TextDocumentService;
 import org.github._1c_syntax.bsl.languageserver.configuration.LanguageServerConfiguration;
 import org.github._1c_syntax.bsl.languageserver.context.DocumentContext;
 import org.github._1c_syntax.bsl.languageserver.context.ServerContext;
+import org.github._1c_syntax.bsl.languageserver.providers.CompletionProvider;
 import org.github._1c_syntax.bsl.languageserver.providers.DiagnosticProvider;
 import org.github._1c_syntax.bsl.languageserver.providers.FormatProvider;
 import org.github._1c_syntax.bsl.languageserver.providers.HoverProvider;
 
 import javax.annotation.CheckForNull;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -81,9 +81,13 @@ public class BSLTextDocumentService implements TextDocumentService, LanguageClie
 
   @Override
   public CompletableFuture<Either<List<CompletionItem>, CompletionList>> completion(CompletionParams position) {
-    List<CompletionItem> completionItems = new ArrayList<>();
-    completionItems.add(new CompletionItem("Hello World"));
-    return CompletableFuture.completedFuture(Either.forLeft(completionItems));
+    DocumentContext documentContext = context.getDocument(position.getTextDocument().getUri());
+    if (documentContext == null) {
+      return CompletableFuture.completedFuture(null);
+    }
+
+    CompletionList completionList = CompletionProvider.getCompletionList(position, documentContext);
+    return CompletableFuture.completedFuture(Either.forRight(completionList));
   }
 
   @Override

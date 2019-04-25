@@ -43,18 +43,22 @@ class BSLTextDocumentServiceTest {
   private BSLTextDocumentService textDocumentService = new BSLTextDocumentService(LanguageServerConfiguration.create());
 
   @Test
-  void completion() throws ExecutionException, InterruptedException {
+  void completion() throws ExecutionException, InterruptedException, IOException {
     // given
-    CompletionParams position = new CompletionParams();
+    doOpen();
+
+    CompletionParams params = new CompletionParams();
+    params.setTextDocument(getTextDocumentIdentifier());
+    params.setPosition(new Position(0, 0));
 
     // when
-    CompletableFuture<Either<List<CompletionItem>, CompletionList>> completion = textDocumentService.completion(position);
+    CompletableFuture<Either<List<CompletionItem>, CompletionList>> completion = textDocumentService.completion(params);
 
     // then
     Either<List<CompletionItem>, CompletionList> listCompletionListEither = completion.get();
-    List<CompletionItem> completionItems = listCompletionListEither.getLeft();
+    CompletionList completionList = listCompletionListEither.getRight();
 
-    assertThat(completionItems).allMatch(completionItem -> "Hello World".equals(completionItem.getLabel()));
+    assertThat(completionList.getItems()).anyMatch(completionItem -> "ИмяПроцедуры".equals(completionItem.getLabel()));
   }
 
   @Test
