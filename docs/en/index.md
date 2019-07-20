@@ -127,6 +127,7 @@ Used for code analysis to meet coding standards and search for possible errors.
 ### Implemented diagnostics
 
 - [CanonicalSpellingKeywords - Canonical spelling of keywords ](diagnostics/CanonicalSpellingKeywords.md)
+- [DeprecatedFind - Using of the deprecated method "Find"](diagnostics/DeprecatedFind.md)
 - [DeprecatedMessage - Restriction on the use of deprecated "Message" method](diagnostics/DeprecatedMessage.md)
 - [EmptyCodeBlock - Empty code block](diagnostics/EmptyCodeBlock.md)
 - [EmptyStatement - Empty Ssatement](diagnostics/EmptyStatement.md)
