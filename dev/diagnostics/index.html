@@ -1,0 +1,2097 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://1c-syntax.github.io/bsl-language-server/dev/diagnostics/">
+      
+      <link rel="icon" href="../assets/images/logo.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.1">
+    
+    
+      
+        <title>Диагностики - BSL Language Server Dev</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.9299cb39.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-150754232-1","1c-syntax.github.io"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#Диагностики" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BSL Language Server Dev" class="md-header__button md-logo" aria-label="BSL Language Server Dev" data-md-component="logo">
+      
+  <img src="../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BSL Language Server Dev
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Диагностики
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/1c-syntax/bsl-language-server/" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    1c-syntax/bsl-language-server
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        Домашняя
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contributing/" class="md-tabs__link">
+        Руководство контрибьютора
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../reporters/" class="md-tabs__link">
+        Репортеры
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      Диагностики
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../features/" class="md-tabs__link">
+        Дополнительные возможности
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="https://1c-syntax.github.io/bsl-language-server/dev/en" class="md-tabs__link">
+      English
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BSL Language Server Dev" class="md-nav__button md-logo" aria-label="BSL Language Server Dev" data-md-component="logo">
+      
+  <img src="../assets/images/logo.png" alt="logo">
+
+    </a>
+    BSL Language Server Dev
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/1c-syntax/bsl-language-server/" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    1c-syntax/bsl-language-server
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        Домашняя
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Домашняя" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Домашняя
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        BSL Language Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        Часто задаваемые вопросы
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systemRequirements/" class="md-nav__link">
+        Системные требования
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Руководство контрибьютора
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Руководство контрибьютора" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Руководство контрибьютора
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        О разделе
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Старт
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Старт" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Старт
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/EnvironmentSetting/" class="md-nav__link">
+        Требования к окружению
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/FastStart/" class="md-nav__link">
+        Быстрый старт
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/StyleGuide/" class="md-nav__link">
+        Руководство по стилю написания кода
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javadoc/index.html" class="md-nav__link">
+        JavaDoc
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      <label class="md-nav__link" for="__nav_2_3">
+        Разработка диагностик
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Разработка диагностик" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Разработка диагностик
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/DiagnosticDevWorkFlow/" class="md-nav__link">
+        Процесс (workflow) разработки диагностики
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/DiagnosticExample/" class="md-nav__link">
+        Пример добавления своей диагностики
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/DiagnosticStructure/" class="md-nav__link">
+        Структура диагностики, назначение и содержимое файлов
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/DiagnosticTypeAndSeverity/" class="md-nav__link">
+        Типы и важность диагностик
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/DiagnosticTag/" class="md-nav__link">
+        Тэги диагностик
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/DiagnostcAddSettings/" class="md-nav__link">
+        Добавление параметров для диагностики
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/DiagnosticQuickFix/" class="md-nav__link">
+        Добавление "Быстрых исправлений"
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Репортеры
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Репортеры" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Репортеры
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reporters/" class="md-nav__link">
+        О разделе
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reporters/json/" class="md-nav__link">
+        JSON
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reporters/generic/" class="md-nav__link">
+        Generic Issue
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reporters/junit/" class="md-nav__link">
+        JUnit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reporters/tslint/" class="md-nav__link">
+        TSLint
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reporters/console/" class="md-nav__link">
+        Console
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Диагностики
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Диагностики
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#Список-реализованных-диагностик" class="md-nav__link">
+    Список реализованных диагностик
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Дополнительные возможности
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Дополнительные возможности" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Дополнительные возможности
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../features/" class="md-nav__link">
+        О разделе
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../features/ConfigurationFile/" class="md-nav__link">
+        Конфигурирование BSL Language Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../features/DiagnosticIgnorance/" class="md-nav__link">
+        Экранирование кода от диагностик
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://1c-syntax.github.io/bsl-language-server/dev/en" class="md-nav__link">
+        English
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/1c-syntax/bsl-language-server/edit/develop/docs/diagnostics/index.md" title="Редактировать страницу" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="Диагностики">Диагностики<a class="headerlink" href="#Диагностики" title="Permanent link">&para;</a></h1>
+<p>Используются для проверки кода на соответствие стандартам кодирования и для поиска возможных ошибок.</p>
+<p>Некоторые диагностики выключены по умолчанию. Для их включения используйте <a href="../features/ConfigurationFile/">конфигурационный файл</a></a>.</p>
+<p>Для экранирования отдельных участков кода или файлов от срабатывания диагностик можно воспользоваться специальными комментариями вида <code>// BSLLS:КлючДиагностики-выкл</code>. Более подробно данная функциональность описана в <a href="../features/DiagnosticIgnorance/">Экранирование участков кода</a>.</p>
+<h2 id="Список-реализованных-диагностик">Список реализованных диагностик<a class="headerlink" href="#Список-реализованных-диагностик" title="Permanent link">&para;</a></h2>
+<p>Общее количество: <strong>140</strong></p>
+<ul>
+<li>Потенциальная уязвимость: <strong>4</strong></li>
+<li>Уязвимость: <strong>3</strong></li>
+<li>Ошибка: <strong>44</strong></li>
+<li>Дефект кода: <strong>89</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Ключ</th>
+<th>Название</th>
+<th align="center">Включена по умолчанию</th>
+<th>Важность</th>
+<th>Тип</th>
+<th>Тэги</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="BeginTransactionBeforeTryCatch/">BeginTransactionBeforeTryCatch</a></td>
+<td>Нарушение правил работы с транзакциями для метода 'НачатьТранзакцию'</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="CachedPublic/">CachedPublic</a></td>
+<td>Кеширование программного интерфейса</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>design</code></td>
+</tr>
+<tr>
+<td><a href="CanonicalSpellingKeywords/">CanonicalSpellingKeywords</a></td>
+<td>Каноническое написание ключевых слов</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="CodeBlockBeforeSub/">CodeBlockBeforeSub</a></td>
+<td>Определения методов должны размещаться перед операторами тела модуля</td>
+<td align="center">Да</td>
+<td>Блокирующий</td>
+<td>Ошибка</td>
+<td><code>error</code></td>
+</tr>
+<tr>
+<td><a href="CodeOutOfRegion/">CodeOutOfRegion</a></td>
+<td>Код расположен вне области</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="CognitiveComplexity/">CognitiveComplexity</a></td>
+<td>Когнитивная сложность</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Дефект кода</td>
+<td><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="CommandModuleExportMethods/">CommandModuleExportMethods</a></td>
+<td>Экспортные методы в модулях команд и общих команд</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>clumsy</code></td>
+</tr>
+<tr>
+<td><a href="CommentedCode/">CommentedCode</a></td>
+<td>Закомментированный фрагмент кода</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="CommitTransactionOutsideTryCatch/">CommitTransactionOutsideTryCatch</a></td>
+<td>Нарушение правил работы с транзакциями для метода 'ЗафиксироватьТранзакцию'</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="CommonModuleAssign/">CommonModuleAssign</a></td>
+<td>Присвоение общему модулю</td>
+<td align="center">Да</td>
+<td>Блокирующий</td>
+<td>Ошибка</td>
+<td><code>error</code></td>
+</tr>
+<tr>
+<td><a href="CommonModuleInvalidType/">CommonModuleInvalidType</a></td>
+<td>Общий модуль недопустимого типа</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>standard</code><br><code>unpredictable</code><br><code>design</code></td>
+</tr>
+<tr>
+<td><a href="CommonModuleMissingAPI/">CommonModuleMissingAPI</a></td>
+<td>Общий модуль должен иметь программный интерфейс</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>brainoverload</code><br><code>suspicious</code></td>
+</tr>
+<tr>
+<td><a href="CommonModuleNameCached/">CommonModuleNameCached</a></td>
+<td>Пропущен постфикс "ПовтИсп"</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="CommonModuleNameClient/">CommonModuleNameClient</a></td>
+<td>Пропущен постфикс "Клиент"</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="CommonModuleNameClientServer/">CommonModuleNameClientServer</a></td>
+<td>Пропущен постфикс "КлиентСервер"</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="CommonModuleNameFullAccess/">CommonModuleNameFullAccess</a></td>
+<td>Пропущен постфикс "ПолныеПрава"</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Потенциальная уязвимость</td>
+<td><code>standard</code><br><code>badpractice</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="CommonModuleNameGlobal/">CommonModuleNameGlobal</a></td>
+<td>Пропущен постфикс "Глобальный"</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code><br><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="CommonModuleNameGlobalClient/">CommonModuleNameGlobalClient</a></td>
+<td>Глобальный модуль с постфиксом "Клиент"</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="CommonModuleNameServerCall/">CommonModuleNameServerCall</a></td>
+<td>Пропущен постфикс "ВызовСервера"</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="CommonModuleNameWords/">CommonModuleNameWords</a></td>
+<td>Нерекомендуемое имя общего модуля</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="CompilationDirectiveLost/">CompilationDirectiveLost</a></td>
+<td>Директивы компиляции методов</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="CompilationDirectiveNeedLess/">CompilationDirectiveNeedLess</a></td>
+<td>Лишняя директива компиляции</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>clumsy</code><br><code>standard</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="ConsecutiveEmptyLines/">ConsecutiveEmptyLines</a></td>
+<td>Подряд идущие пустые строки</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="CrazyMultilineString/">CrazyMultilineString</a></td>
+<td>Безумные многострочные литералы</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code><br><code>suspicious</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="CreateQueryInCycle/">CreateQueryInCycle</a></td>
+<td>Выполнение запроса в цикле</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>performance</code></td>
+</tr>
+<tr>
+<td><a href="CyclomaticComplexity/">CyclomaticComplexity</a></td>
+<td>Цикломатическая сложность</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Дефект кода</td>
+<td><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="DataExchangeLoading/">DataExchangeLoading</a></td>
+<td>Отсутствует проверка признака ОбменДанными.Загрузка в обработчике событий объекта</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>standard</code><br><code>badpractice</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="DeletingCollectionItem/">DeletingCollectionItem</a></td>
+<td>Удаление элемента при обходе коллекции посредством оператора "Для каждого ... Из ... Цикл"</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>standard</code><br><code>error</code></td>
+</tr>
+<tr>
+<td><a href="DeprecatedAttributes8312/">DeprecatedAttributes8312</a></td>
+<td>Устаревшие объекты платформы 8.3.12</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>deprecated</code></td>
+</tr>
+<tr>
+<td><a href="DeprecatedCurrentDate/">DeprecatedCurrentDate</a></td>
+<td>Использование устаревшего метода "ТекущаяДата"</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>standard</code><br><code>deprecated</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="DeprecatedFind/">DeprecatedFind</a></td>
+<td>Использование устаревшего метода "Найти"</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>deprecated</code></td>
+</tr>
+<tr>
+<td><a href="DeprecatedMessage/">DeprecatedMessage</a></td>
+<td>Ограничение на использование устаревшего метода "Сообщить"</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>deprecated</code></td>
+</tr>
+<tr>
+<td><a href="DeprecatedMethodCall/">DeprecatedMethodCall</a></td>
+<td>Устаревшие методы не должны использоваться</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>deprecated</code><br><code>design</code></td>
+</tr>
+<tr>
+<td><a href="DeprecatedMethods8310/">DeprecatedMethods8310</a></td>
+<td>Использование устаревшего метода клиентского приложения</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>deprecated</code></td>
+</tr>
+<tr>
+<td><a href="DeprecatedMethods8317/">DeprecatedMethods8317</a></td>
+<td>Использование устаревших глобальных методов платформы 8.3.17</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>deprecated</code></td>
+</tr>
+<tr>
+<td><a href="DeprecatedTypeManagedForm/">DeprecatedTypeManagedForm</a></td>
+<td>Устаревшее использование типа "УправляемаяФорма"</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>deprecated</code></td>
+</tr>
+<tr>
+<td><a href="DuplicateRegion/">DuplicateRegion</a></td>
+<td>Повторяющиеся разделы модуля</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="EmptyCodeBlock/">EmptyCodeBlock</a></td>
+<td>Пустой блок кода</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code><br><code>suspicious</code></td>
+</tr>
+<tr>
+<td><a href="EmptyRegion/">EmptyRegion</a></td>
+<td>Область не должна быть пустой</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="EmptyStatement/">EmptyStatement</a></td>
+<td>Пустой оператор</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="ExcessiveAutoTestCheck/">ExcessiveAutoTestCheck</a></td>
+<td>Избыточная проверка параметра АвтоТест</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>deprecated</code></td>
+</tr>
+<tr>
+<td><a href="ExecuteExternalCode/">ExecuteExternalCode</a></td>
+<td>Выполнение произвольного кода на сервере</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Уязвимость</td>
+<td><code>error</code><br><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="ExecuteExternalCodeInCommonModule/">ExecuteExternalCodeInCommonModule</a></td>
+<td>Выполнение произвольного кода в общем модуле на сервере</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Потенциальная уязвимость</td>
+<td><code>badpractice</code><br><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="ExportVariables/">ExportVariables</a></td>
+<td>Запрет экспортных глобальных переменных модуля</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>design</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="ExtraCommas/">ExtraCommas</a></td>
+<td>Запятые без указания параметра в конце вызова метода</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="FormDataToValue/">FormDataToValue</a></td>
+<td>Использование метода ДанныеФормыВЗначение</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="FullOuterJoinQuery/">FullOuterJoinQuery</a></td>
+<td>Использование конструкции "ПОЛНОЕ ВНЕШНЕЕ СОЕДИНЕНИЕ" в запросах</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>sql</code><br><code>standard</code><br><code>performance</code></td>
+</tr>
+<tr>
+<td><a href="FunctionNameStartsWithGet/">FunctionNameStartsWithGet</a></td>
+<td>Имя функции не должно начинаться с "Получить"</td>
+<td align="center">Нет</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="FunctionOutParameter/">FunctionOutParameter</a></td>
+<td>Исходящий параметр функции</td>
+<td align="center">Нет</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>design</code></td>
+</tr>
+<tr>
+<td><a href="FunctionReturnsSamePrimitive/">FunctionReturnsSamePrimitive</a></td>
+<td>Функция всегда возвращает одно и то же примитивное значение</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>design</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="FunctionShouldHaveReturn/">FunctionShouldHaveReturn</a></td>
+<td>Функция должна содержать возврат</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>suspicious</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="GetFormMethod/">GetFormMethod</a></td>
+<td>Использование метода ПолучитьФорму</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>error</code></td>
+</tr>
+<tr>
+<td><a href="GlobalContextMethodCollision8312/">GlobalContextMethodCollision8312</a></td>
+<td>Конфликт имен методов с методами глобального контекста</td>
+<td align="center">Да</td>
+<td>Блокирующий</td>
+<td>Ошибка</td>
+<td><code>error</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="IdenticalExpressions/">IdenticalExpressions</a></td>
+<td>Одинаковые выражения слева и справа от "foo" оператора</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>suspicious</code></td>
+</tr>
+<tr>
+<td><a href="IfConditionComplexity/">IfConditionComplexity</a></td>
+<td>Использование сложных выражений в условии оператора "Если"</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="IfElseDuplicatedCodeBlock/">IfElseDuplicatedCodeBlock</a></td>
+<td>Повторяющиеся блоки кода в синтаксической конструкции Если...Тогда...ИначеЕсли...</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>suspicious</code></td>
+</tr>
+<tr>
+<td><a href="IfElseDuplicatedCondition/">IfElseDuplicatedCondition</a></td>
+<td>Повторяющиеся условия в синтаксической конструкции Если...Тогда...ИначеЕсли...</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>suspicious</code></td>
+</tr>
+<tr>
+<td><a href="IfElseIfEndsWithElse/">IfElseIfEndsWithElse</a></td>
+<td>Использование синтаксической конструкции Если...Тогда...ИначеЕсли...</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="IncorrectUseLikeInQuery/">IncorrectUseLikeInQuery</a></td>
+<td>Некорректное использование 'ПОДОБНО'</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>standard</code><br><code>sql</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="IncorrectUseOfStrTemplate/">IncorrectUseOfStrTemplate</a></td>
+<td>Неверное использование "СтрШаблон"</td>
+<td align="center">Да</td>
+<td>Блокирующий</td>
+<td>Ошибка</td>
+<td><code>brainoverload</code><br><code>suspicious</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="InvalidCharacterInFile/">InvalidCharacterInFile</a></td>
+<td>Недопустимый символ</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>error</code><br><code>standard</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="IsInRoleMethod/">IsInRoleMethod</a></td>
+<td>Использование метода РольДоступна</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>error</code></td>
+</tr>
+<tr>
+<td><a href="JoinWithSubQuery/">JoinWithSubQuery</a></td>
+<td>Соединение с вложенными запросами</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>sql</code><br><code>standard</code><br><code>performance</code></td>
+</tr>
+<tr>
+<td><a href="JoinWithVirtualTable/">JoinWithVirtualTable</a></td>
+<td>Соединение с виртуальными таблицами</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>sql</code><br><code>standard</code><br><code>performance</code></td>
+</tr>
+<tr>
+<td><a href="LatinAndCyrillicSymbolInWord/">LatinAndCyrillicSymbolInWord</a></td>
+<td>Смешивание латинских и кириллических символов в одном идентификаторе</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>brainoverload</code><br><code>suspicious</code></td>
+</tr>
+<tr>
+<td><a href="LineLength/">LineLength</a></td>
+<td>Ограничение на длину строки</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="LogicalOrInTheWhereSectionOfQuery/">LogicalOrInTheWhereSectionOfQuery</a></td>
+<td>Использование логического "ИЛИ" в секции "ГДЕ" запроса</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>sql</code><br><code>performance</code><br><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="MagicDate/">MagicDate</a></td>
+<td>Магические даты</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code><br><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="MagicNumber/">MagicNumber</a></td>
+<td>Магические числа</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="MetadataObjectNameLength/">MetadataObjectNameLength</a></td>
+<td>Имена объектов метаданных не должны превышать допустимой длины наименования</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="MethodSize/">MethodSize</a></td>
+<td>Ограничение на размер метода</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="MissingCodeTryCatchEx/">MissingCodeTryCatchEx</a></td>
+<td>Конструкция "Попытка...Исключение...КонецПопытки" не содержит кода в исключении</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>standard</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="MissingEventSubscriptionHandler/">MissingEventSubscriptionHandler</a></td>
+<td>Отсутствует обработчик подписки на событие</td>
+<td align="center">Да</td>
+<td>Блокирующий</td>
+<td>Ошибка</td>
+<td><code>error</code></td>
+</tr>
+<tr>
+<td><a href="MissingParameterDescription/">MissingParameterDescription</a></td>
+<td>Отсутствует описание параметров метода</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="MissingReturnedValueDescription/">MissingReturnedValueDescription</a></td>
+<td>Отсутствует описание возвращаемого значения функции</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="MissingSpace/">MissingSpace</a></td>
+<td>Пропущены пробелы слева или справа от операторов <code>+ - * / = % &lt; &gt; &lt;&gt; &lt;= &gt;=</code>, от ключевых слов, а так же справа от <code>,</code> и <code>;</code></td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="MissingTemporaryFileDeletion/">MissingTemporaryFileDeletion</a></td>
+<td>Отсутствует удаление временного файла после использования</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>badpractice</code><br><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="MissingVariablesDescription/">MissingVariablesDescription</a></td>
+<td>Все объявления переменных должны иметь описание</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="MultilineStringInQuery/">MultilineStringInQuery</a></td>
+<td>Многострочный литерал в запросе</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>badpractice</code><br><code>suspicious</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="MultilingualStringHasAllDeclaredLanguages/">MultilingualStringHasAllDeclaredLanguages</a></td>
+<td>Есть локализованный текст для всех заявленных в конфигурации языков</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Ошибка</td>
+<td><code>error</code><br><code>localize</code></td>
+</tr>
+<tr>
+<td><a href="MultilingualStringUsingWithTemplate/">MultilingualStringUsingWithTemplate</a></td>
+<td>Частично локализованный текст используется в функции СтрШаблон</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>error</code><br><code>localize</code></td>
+</tr>
+<tr>
+<td><a href="NestedConstructorsInStructureDeclaration/">NestedConstructorsInStructureDeclaration</a></td>
+<td>Использование конструкторов с параметрами при объявлении структуры</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code><br><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="NestedFunctionInParameters/">NestedFunctionInParameters</a></td>
+<td>Инициализация параметров методов и конструкторов вызовом вложенных методов</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>brainoverload</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="NestedStatements/">NestedStatements</a></td>
+<td>Управляющие конструкции не должны быть вложены слишком глубоко</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code><br><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="NestedTernaryOperator/">NestedTernaryOperator</a></td>
+<td>Вложенный тернарный оператор</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="NonExportMethodsInApiRegion/">NonExportMethodsInApiRegion</a></td>
+<td>Неэкспортные методы в областях ПрограммныйИнтерфейс и СлужебныйПрограммныйИнтерфейс</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="NonStandardRegion/">NonStandardRegion</a></td>
+<td>Нестандартные разделы модуля</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="NumberOfOptionalParams/">NumberOfOptionalParams</a></td>
+<td>Ограничение на количество не обязательных параметров метода</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="NumberOfParams/">NumberOfParams</a></td>
+<td>Ограничение на количество параметров метода</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="NumberOfValuesInStructureConstructor/">NumberOfValuesInStructureConstructor</a></td>
+<td>Ограничение на количество значений свойств, передаваемых в конструктор структуры</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="OSUsersMethod/">OSUsersMethod</a></td>
+<td>Использование метода ПользователиОС</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Потенциальная уязвимость</td>
+<td><code>suspicious</code></td>
+</tr>
+<tr>
+<td><a href="OneStatementPerLine/">OneStatementPerLine</a></td>
+<td>Одно выражение в одной строке</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>design</code></td>
+</tr>
+<tr>
+<td><a href="OrderOfParams/">OrderOfParams</a></td>
+<td>Порядок параметров метода</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>design</code></td>
+</tr>
+<tr>
+<td><a href="OrdinaryAppSupport/">OrdinaryAppSupport</a></td>
+<td>Поддержка обычного приложения</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="PairingBrokenTransaction/">PairingBrokenTransaction</a></td>
+<td>Нарушение парности использования методов "НачатьТранзакцию()" и "ЗафиксироватьТранзакцию()" / "ОтменитьТранзакцию()"</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="ParseError/">ParseError</a></td>
+<td>Ошибка разбора исходного кода</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>error</code></td>
+</tr>
+<tr>
+<td><a href="ProcedureReturnsValue/">ProcedureReturnsValue</a></td>
+<td>Процедура не должна возвращать значение</td>
+<td align="center">Да</td>
+<td>Блокирующий</td>
+<td>Ошибка</td>
+<td><code>error</code></td>
+</tr>
+<tr>
+<td><a href="PublicMethodsDescription/">PublicMethodsDescription</a></td>
+<td>Все методы программного интерфейса должны иметь описание</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>brainoverload</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="RedundantAccessToObject/">RedundantAccessToObject</a></td>
+<td>Избыточное обращение к объекту</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>clumsy</code></td>
+</tr>
+<tr>
+<td><a href="RefOveruse/">RefOveruse</a></td>
+<td>Избыточное использование "Ссылка" в запросе</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>sql</code><br><code>performance</code></td>
+</tr>
+<tr>
+<td><a href="SelectTopWithoutOrderBy/">SelectTopWithoutOrderBy</a></td>
+<td>Использование 'ВЫБРАТЬ ПЕРВЫЕ' без 'УПОРЯДОЧИТЬ ПО'</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>sql</code><br><code>suspicious</code></td>
+</tr>
+<tr>
+<td><a href="SelfAssign/">SelfAssign</a></td>
+<td>Присвоение переменной самой себе</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>suspicious</code></td>
+</tr>
+<tr>
+<td><a href="SelfInsertion/">SelfInsertion</a></td>
+<td>Вставка коллекции в саму себя</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Ошибка</td>
+<td><code>standard</code><br><code>unpredictable</code><br><code>performance</code></td>
+</tr>
+<tr>
+<td><a href="SemicolonPresence/">SemicolonPresence</a></td>
+<td>Выражение должно заканчиваться символом ";"</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="SeveralCompilerDirectives/">SeveralCompilerDirectives</a></td>
+<td>Ошибочное указание нескольких директив компиляции</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>unpredictable</code><br><code>error</code></td>
+</tr>
+<tr>
+<td><a href="SpaceAtStartComment/">SpaceAtStartComment</a></td>
+<td>Пробел в начале комментария</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="StyleElementConstructors/">StyleElementConstructors</a></td>
+<td>Конструктор элемента стиля</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Ошибка</td>
+<td><code>standard</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="TempFilesDir/">TempFilesDir</a></td>
+<td>Вызов функции КаталогВременныхФайлов()</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="TernaryOperatorUsage/">TernaryOperatorUsage</a></td>
+<td>Использование тернарного оператора</td>
+<td align="center">Нет</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="ThisObjectAssign/">ThisObjectAssign</a></td>
+<td>Присвоение значения свойству ЭтотОбъект</td>
+<td align="center">Да</td>
+<td>Блокирующий</td>
+<td>Ошибка</td>
+<td><code>error</code></td>
+</tr>
+<tr>
+<td><a href="TimeoutsInExternalResources/">TimeoutsInExternalResources</a></td>
+<td>Таймауты при работе с внешними ресурсами</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>unpredictable</code><br><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="TooManyReturns/">TooManyReturns</a></td>
+<td>Метод не должен содержать много возвратов</td>
+<td align="center">Нет</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="TryNumber/">TryNumber</a></td>
+<td>Приведение к числу в попытке</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="Typo/">Typo</a></td>
+<td>Опечатка</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="UnaryPlusInConcatenation/">UnaryPlusInConcatenation</a></td>
+<td>Унарный плюс в конкатенации строк</td>
+<td align="center">Да</td>
+<td>Блокирующий</td>
+<td>Ошибка</td>
+<td><code>suspicious</code><br><code>brainoverload</code></td>
+</tr>
+<tr>
+<td><a href="UnionAll/">UnionAll</a></td>
+<td>Использование ключевого слова "ОБЪЕДИНИТЬ" в запросах</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>sql</code><br><code>performance</code></td>
+</tr>
+<tr>
+<td><a href="UnknownPreprocessorSymbol/">UnknownPreprocessorSymbol</a></td>
+<td>Неизвестный символ препроцессора</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>standard</code><br><code>error</code></td>
+</tr>
+<tr>
+<td><a href="UnreachableCode/">UnreachableCode</a></td>
+<td>Недостижимый код</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Ошибка</td>
+<td><code>design</code><br><code>suspicious</code></td>
+</tr>
+<tr>
+<td><a href="UnsafeSafeModeMethodCall/">UnsafeSafeModeMethodCall</a></td>
+<td>Небезопасное использование функции БезопасныйРежим()</td>
+<td align="center">Да</td>
+<td>Блокирующий</td>
+<td>Ошибка</td>
+<td><code>deprecated</code><br><code>error</code></td>
+</tr>
+<tr>
+<td><a href="UnusedLocalMethod/">UnusedLocalMethod</a></td>
+<td>Неиспользуемый локальный метод</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>suspicious</code><br><code>unused</code></td>
+</tr>
+<tr>
+<td><a href="UnusedParameters/">UnusedParameters</a></td>
+<td>Неиспользуемый параметр</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>design</code><br><code>unused</code></td>
+</tr>
+<tr>
+<td><a href="UsageWriteLogEvent/">UsageWriteLogEvent</a></td>
+<td>Неверное использование метода "ЗаписьЖурналаРегистрации"</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="UseLessForEach/">UseLessForEach</a></td>
+<td>Бесполезный перебор коллекции</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>clumsy</code></td>
+</tr>
+<tr>
+<td><a href="UsingCancelParameter/">UsingCancelParameter</a></td>
+<td>Работа с параметром "Отказ"</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="UsingExternalCodeTools/">UsingExternalCodeTools</a></td>
+<td>Использование возможностей выполнения внешнего кода</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Потенциальная уязвимость</td>
+<td><code>standard</code><br><code>design</code></td>
+</tr>
+<tr>
+<td><a href="UsingFindElementByString/">UsingFindElementByString</a></td>
+<td>Использование методов "НайтиПоНаименованию" и "НайтиПоКоду"</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code><br><code>performance</code></td>
+</tr>
+<tr>
+<td><a href="UsingGoto/">UsingGoto</a></td>
+<td>Оператор "Перейти" не должен использоваться</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="UsingHardcodeNetworkAddress/">UsingHardcodeNetworkAddress</a></td>
+<td>Хранение ip-адресов в коде</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Уязвимость</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="UsingHardcodePath/">UsingHardcodePath</a></td>
+<td>Хранение путей к файлам в коде</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="UsingHardcodeSecretInformation/">UsingHardcodeSecretInformation</a></td>
+<td>Хранение конфиденциальной информации в коде</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Уязвимость</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="UsingLikeInQuery/">UsingLikeInQuery</a></td>
+<td>Использование 'ПОДОБНО' в запросе</td>
+<td align="center">Нет</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>sql</code><br><code>unpredictable</code></td>
+</tr>
+<tr>
+<td><a href="UsingModalWindows/">UsingModalWindows</a></td>
+<td>Использование модальных окон</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="UsingObjectNotAvailableUnix/">UsingObjectNotAvailableUnix</a></td>
+<td>Использование объектов недоступных в Unix системах</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>standard</code><br><code>lockinos</code></td>
+</tr>
+<tr>
+<td><a href="UsingServiceTag/">UsingServiceTag</a></td>
+<td>Использование служебных тегов</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>badpractice</code></td>
+</tr>
+<tr>
+<td><a href="UsingSynchronousCalls/">UsingSynchronousCalls</a></td>
+<td>Использование синхронных вызовов</td>
+<td align="center">Да</td>
+<td>Важный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="UsingThisForm/">UsingThisForm</a></td>
+<td>Использование устаревшего свойства "ЭтаФорма"</td>
+<td align="center">Да</td>
+<td>Незначительный</td>
+<td>Дефект кода</td>
+<td><code>standard</code><br><code>deprecated</code></td>
+</tr>
+<tr>
+<td><a href="VirtualTableCallWithoutParameters/">VirtualTableCallWithoutParameters</a></td>
+<td>Обращение к виртуальной таблице без параметров</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>sql</code><br><code>standard</code><br><code>performance</code></td>
+</tr>
+<tr>
+<td><a href="WrongUseFunctionProceedWithCall/">WrongUseFunctionProceedWithCall</a></td>
+<td>Некорректное использование функции ПродолжитьВызов()</td>
+<td align="center">Да</td>
+<td>Блокирующий</td>
+<td>Ошибка</td>
+<td><code>error</code><br><code>suspicious</code></td>
+</tr>
+<tr>
+<td><a href="WrongUseOfRollbackTransactionMethod/">WrongUseOfRollbackTransactionMethod</a></td>
+<td>Некорректное использование метода ОтменитьТранзакцию()</td>
+<td align="center">Да</td>
+<td>Критичный</td>
+<td>Ошибка</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><a href="YoLetterUsage/">YoLetterUsage</a></td>
+<td>Использование буквы "ё" в текстах модулей</td>
+<td align="center">Да</td>
+<td>Информационный</td>
+<td>Дефект кода</td>
+<td><code>standard</code></td>
+</tr>
+</tbody>
+</table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../reporters/console/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              Console
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../features/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              О разделе
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/1c-syntax" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://t.me/bsl_language_server" target="_blank" rel="noopener" title="t.me" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "search.highlight", "toc.integrate", "header.autohide"], "translations": {"clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "search.config.lang": "ru", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "\u041f\u043e\u0438\u0441\u043a", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e # \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.7353b375.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+      
+        <script src="../assets/javascripts/tables.js"></script>
+      
+    
+  </body>
+</html>

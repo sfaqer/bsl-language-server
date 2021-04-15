@@ -1,0 +1,11 @@
+.md-content {
+    margin-right: 0;
+}
+
+.md-typeset__table {
+    padding: 0;
+}
+
+.md-typeset table:not([class]) {
+    font-size: .54rem;
+}
