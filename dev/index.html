@@ -136,13 +136,13 @@
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="/en/" class="md-select__link">
+                  <a href="/dev/dev/en/" class="md-select__link">
                     English
                   </a>
                 </li>
                 
                 <li class="md-select__item">
-                  <a href="/" class="md-select__link">
+                  <a href="/dev/" class="md-select__link">
                     Русский
                   </a>
                 </li>
@@ -954,7 +954,7 @@
 <li>Запуск форматирования файлов в каталоге из командной строки</li>
 </ul>
 <h2 id="Поддерживаемые-операции-протокола">Поддерживаемые операции протокола<a class="headerlink" href="#Поддерживаемые-операции-протокола" title="Permanent link">&para;</a></h2>
-<details class="note workflow"><summary>Note</summary><table>
+<details class="workflow"><summary>Workflow</summary><table>
 <thead>
 <tr>
 <th>Операция</th>
@@ -1001,49 +1001,16 @@
 </tbody>
 </table>
 </details>
-<details class="note text synchronization"><summary>Note</summary><table>
-<thead>
-<tr>
-<th>Операция</th>
-<th>Поддержка</th>
-<th>Комментарий</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_didOpen">didOpen</a></td>
-<td><img src="./assets/images/checkmark.svg" alt="yes" width="20"></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_didChange">didChange</a></td>
-<td><img src="./assets/images/checkmark.svg" alt="yes" width="20"></td>
-<td>textDocumentSyncKind = Full</td>
-</tr>
-<tr>
-<td><a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_didClose">didClose</a></td>
-<td><img src="./assets/images/checkmark.svg" alt="yes" width="20"></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_didSave">didSave</a></td>
-<td><img src="./assets/images/checkmark.svg" alt="yes" width="20"></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_willSave">willSave</a></td>
-<td><img src="./assets/images/cross.svg" alt="no" width="20"></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_willSaveWaitUntil">willSaveWaitUntil</a></td>
-<td><img src="./assets/images/cross.svg" alt="no" width="20"></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</details>
-<details class="note textdocument"><summary>Note</summary><table>
+<p>??? 'Text Synchronization'
+    | Операция                                                                                                                                            | Поддержка                                                      | Комментарий                                                                                |
+    | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+    | <a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_didOpen">didOpen</a> | <img src="./assets/images/checkmark.svg" alt="yes" width="20"> |                                                              |                  |
+    | <a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_didChange">didChange</a> | <img src="./assets/images/checkmark.svg" alt="yes" width="20"> | textDocumentSyncKind = Full                                  |                  |
+    | <a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_didClose">didClose</a> | <img src="./assets/images/checkmark.svg" alt="yes" width="20"> |                                                              |                  |
+    | <a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_didSave">didSave</a> | <img src="./assets/images/checkmark.svg" alt="yes" width="20"> |                                                              |                  |
+    | <a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_willSave">willSave</a> | <img src="./assets/images/cross.svg" alt="no" width="20">    |                                                              |                  |
+    | <a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_willSaveWaitUntil">willSaveWaitUntil</a> | <img src="./assets/images/cross.svg" alt="no" width="20">    |                                                              |                  |</p>
+<details class="textdocument"><summary>Textdocument</summary><table>
 <thead>
 <tr>
 <th>Операция</th>
