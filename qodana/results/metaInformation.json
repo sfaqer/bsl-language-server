@@ -1,0 +1,16 @@
+{
+  "total": 28,
+  "tools inspection": {
+    "Code Inspection": 28
+  },
+  "attributes": {
+    "vcs": {
+      "sarifIdea": {
+        "repositoryUri": "https://github.com/sfaqer/bsl-language-server",
+        "revisionId": "ccf7aaf9f752c781e92cd8909bfed9535b3a8698",
+        "branch": "develop"
+      }
+    },
+    "deviceId": "200820300000000-a72f-a256-75c6-f4a763627199"
+  }
+}
