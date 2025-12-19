@@ -36,6 +36,7 @@ import org.eclipse.lsp4j.CodeLens;
 import org.eclipse.lsp4j.Command;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.beans.ConstructorProperties;
@@ -51,6 +52,7 @@ import java.util.Optional;
  */
 @Component
 @Slf4j
+@Order(2)
 public class RunTestCodeLensSupplier
   extends AbstractRunTestsCodeLensSupplier<RunTestCodeLensSupplier.RunTestCodeLensData> {
 
